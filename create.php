@@ -59,18 +59,6 @@
           class="h-10 border-b-2 border-slate-700 outline-none"
         />
       </div>
-      <div class="flex flex-col p-4 ">
-        <label
-          for="NationalID"
-          class="text-xl text-gray-400"
-        >National ID</label>
-        <input
-          type="number"
-          name="NationalID"
-          id="NationalID"
-          class="h-10 border-b-2 border-slate-700 outline-none"
-        />
-      </div>
     </div>
     <div class="flex justify-center items-center">
       <button
