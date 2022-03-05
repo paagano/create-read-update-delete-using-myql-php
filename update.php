@@ -1,4 +1,22 @@
+<?php 
+require './db.php';
 
+$id =  $_GET['id'] ?? null;
+
+if(!$id){
+    header("Location: index.php");
+    exit;
+}
+
+
+$statement = $db->prepare('SELECT *  FROM CUSTOMERS WHERE CustomerID = :id');
+$statement->bindValue(':id', $id);
+$statement ->execute();
+$customer= $statement->fetch(PDO::FETCH_ASSOC);
+
+/// UPDATE DETAILS
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +52,7 @@
           name="FirstName"
           id="FirstName"
           class="h-10 border-b-2 border-slate-700 outline-none"
-          
+          value="<?php echo $customer["FirstName"]; ?>"
         />
       </div>
       <div class="flex flex-col p-4 ">
@@ -47,7 +65,7 @@
           name="LastName"
           id="LastName"
           class="h-10 border-b-2 border-slate-700 outline-none"
-         
+         value = "<?php echo $customer["LastName"];?>"
         />
       </div>
       <div class="flex flex-col p-4 ">
@@ -60,7 +78,7 @@
           name="Email"
           id="Email"
           class="h-10 border-b-2 border-slate-700 outline-none"
-         
+          value="<?php echo $customer["Email"];?>"
         />
       </div>
      
