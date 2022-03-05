@@ -1,11 +1,3 @@
-<?php 
-include "./db.php";
-$statement = $db->prepare("SELECT * FROM CUSTOMERS");
-$statement->execute();
-$customers =  $statement->fetchAll(PDO::FETCH_ASSOC);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
