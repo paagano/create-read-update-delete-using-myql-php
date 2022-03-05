@@ -1,6 +1,5 @@
-# EXERCISE 3
 
-## SAMPLE PHP MYSQL CREATE READE APP
+# SAMPLE PHP MYSQL CRUD APP
 
 ### Create a web application based on any business model to meet the following deliverables
 
