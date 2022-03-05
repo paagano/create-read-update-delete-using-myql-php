@@ -1,3 +1,25 @@
+<?php 
+require "./db.php";
+
+if($_SERVER['REQUEST_METHOD'] === "POST"){
+ $FistName =  $_POST["FirstName"];
+ $LastName =  $_POST["LastName"];
+ $Email =  $_POST["Email"];
+
+ $statement =  $db -> prepare("INSERT INTO CUSTOMERS 
+ (FirstName, LastName, Email)
+ VALUES(:FirstName, :LastName, :Email)");
+  $statement->bindValue("FirstName", $FistName);
+  $statement->bindValue("LastName", $LastName);
+  $statement->bindValue("Email", $Email);
+
+  $statement ->execute();
+  header("Location: index.php");
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
