@@ -1,4 +1,10 @@
+<?php 
+include "./db.php";
+$statement = $db->prepare("SELECT * FROM CUSTOMERS");
+$statement->execute();
+$customers =  $statement->fetchAll(PDO::FETCH_ASSOC);
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +35,34 @@
         <th class="border border-slate-600 p-5">Last Name</th>
         <th class="border border-slate-600  p-5">Email</th>
         <th class="border border-slate-600  p-5">Controls</th>
-
       </tr>
     </thead>
     <tbody>
-     
+     <?php  foreach ($customers as $customer): ?>
+      <tr>
+         <td class="border border-slate-700 p-4">
+            <?php echo $customer["CustomerID"];  ?>
+         </td>
+         <td class="border border-slate-700 p-4">
+            <?php echo $customer["FirstName"];  ?>
+         </td>
+         <td class="border border-slate-700 p-4">
+            <?php echo $customer["LastName"];  ?>
+         </td>
+         <td class="border border-slate-700 p-4">
+            <?php echo $customer["Email"];  ?>
+         </td>
+
+      <td class="border border-slate-700 p-4">
+            <a href="update.php?id=<?php echo $customer["CustomerID"];  ?>">
+                  <button class="bg-amber-500 p-2 rounded-xl text-gray-700">Edit</button>
+            </a>
+            <a href="delete.php?id=<?php echo $customer["CustomerID"];  ?>">
+                  <button class="bg-gray-700 p-2 rounded-xl text-gray-100">Delete</button>
+            </a>
+      </td>
+      </tr>
+      <?php endforeach; ?>
     </tbody>
   </table>
   <div class="flex justify-center items-center w-1/2 ">
