@@ -14,7 +14,27 @@ $statement->bindValue(':id', $id);
 $statement ->execute();
 $customer= $statement->fetch(PDO::FETCH_ASSOC);
 
-/// UPDATE DETAILS
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+  
+  //  print_r($_POST);
+  $FirstName = $_POST['FirstName'];
+  $LastName = $_POST['LastName'];
+  $Email = $_POST['Email'];
+
+  $statement = $db->prepare("UPDATE CUSTOMERS 
+  SET FirstName = :FirstName,
+  LastName =:LastName,  
+  Email =:Email
+  WHERE CustomerID =:id
+  ");
+    $statement->bindValue("FirstName", $FirstName);
+    $statement->bindValue("LastName", $LastName);
+    $statement->bindValue("Email", $Email);
+    $statement->bindValue('id', $id);
+    $statement->execute();
+
+  header("Location: index.php");
+}
 
 ?>
 <!DOCTYPE html>
